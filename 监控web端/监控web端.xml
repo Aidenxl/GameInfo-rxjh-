@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>监控web端</name>
+    </assembly>
+    <members>
+        <member name="M:监控web端.Controllers.GameInfoController.GetGameInfo(Models.ApiRequestModel.GetGameInfo)">
+            <summary>
+            获取游戏信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.LoginController.Login(Models.ApiRequestModel.UserLoginInfo)">
+            <summary>
+            登录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.LoginController.CheckMachineRegStatus(System.String)">
+            <summary>
+            本地版验证激活状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.RegController.AddAccount(System.String,System.String)">
+            <summary>
+            注册账号
+            </summary>
+            <param name="account"></param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.RegController.RegAccount(System.String,System.String)">
+            <summary>
+            激活账号
+            </summary>
+            <param name="account"></param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.RegController.RegMachine(System.String,System.String)">
+            <summary>
+            激活设备(本地版)
+            </summary>
+            <param name="account"></param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.RegController.GetRegCode(System.Int32,System.Int32)">
+            <summary>
+            获取注册码
+            </summary>
+            <param name="account"></param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:监控web端.Controllers.RegController.AddRegCode(System.Collections.Generic.List{Models.ApiRequestModel.CodeInfo})">
+            <summary>
+            添加注册码
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

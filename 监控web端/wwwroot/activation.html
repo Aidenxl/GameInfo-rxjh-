@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<div id="LoginBaseDiv">
+		<label>用户名：</label> <input type="text" id="loginUserId" /><br />
+		<label>注册码：</label> <input type="text" id="RegCode" /><br />
+		<button id="activationBtn">激活</button><a href="Login.html">返回登录</a>
+	</div>
+</body>
+</html>
+
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+	$("#activationBtn").click(function () {
+		$.ajax({
+			url: `api/Reg/RegAccount?account=${$("#loginUserId").val()}&regCode=${$("#RegCode").val()}`,
+			//data: JSON.stringify({ account: $("#loginUserId").val(), password: $("#LoginPwd").val() }),
+			type: 'GET',
+			contentType: "application/json",
+			success: function (res) {
+
+				alert(res.message)
+
+			}
+		})
+	})
+</script>

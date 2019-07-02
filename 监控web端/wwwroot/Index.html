@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<div class="text-center">
+		<label id="TotilGold"></label>
+		<table style="text-align:center">
+			<thead>
+				<tr id="head">
+					<th style="width:120px">账号</th>
+					<th style="width:120px">名字</th>
+					<th style="width:40px">等级</th>
+					<th style="width:100px">当前经验</th>
+					<th style="width:100px">需要经验</th>
+					<th style="width:90px">经验百分比</th>
+					<th style="width:90px">武勋</th>
+					<th style="width:90px">游戏币</th>
+					<th style="width:90px">金币/分钟</th>
+					<th style="width:90px">经验/分钟</th>
+					<th style="width:120px">剩余升级时间</th>
+					<th style="width:120px">在线时间</th>
+				</tr>
+			</thead>
+			<tbody id="content"></tbody>
+		</table>
+	</div>
+</body>
+</html>
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+
+	$(function () {
+		GetInfo();
+	})
+
+	function GetInfo() {
+		$.ajax({
+			url: "api/GameInfo/GetGameInfo",
+			data: JSON.stringify({ account: localStorage.getItem("Account"), token: localStorage.getItem("Token") }),
+			type: 'POST',
+			contentType: "application/json",
+			success: function (res) {
+				if (res.status == 0) {
+					alert("请登录");
+					localStorage.clear()
+					location.href = "Login.html"
+				}
+				else if (res.status == -1) {
+					alert("在其他地方登录，请重新登录");
+					localStorage.clear()
+					location.href = "Login.html"
+
+				}
+				else if (res.status == -2) {
+					alert("账号已到期，请充值");
+					localStorage.clear()
+					location.href = "Login.html"
+
+				}
+				else if (res.status == 1) {
+					if (res.gameInfoModel != null) {
+						$("#TotilGold").append(res.gameInfoModel.totilGold);
+						res.gameInfoModel.infoModels.forEach(i => {
+							var str = `<tr>
+							<td>${i.account}</td>
+							<td>${i.name}</td>
+							<td>${i.grade}</td>
+							<td>${Todouble(i.currentExperience)}万</td>
+							<td>${Todouble(i.needExperience)}万</td>
+							<td>${i.experienceRatio}</td>
+							<td>${i.wx}</td>
+							<td>${Todouble(i.currentGold)}万</td>
+							<td>${Todouble(i.minutesGold)}万</td>
+							<td>${Todouble(i.minutesExperience)}万</td>
+							<td>${Math.floor(i.minutesExperience / 60)}分${Math.floor(i.minutesExperience % 60)}秒</td>
+							<td>${Math.floor(i.loginTime / 60)}分${Math.floor(i.loginTime % 60)}秒</td>
+						</tr>`
+							$("#content").append(str)
+						})
+					}
+
+				}
+			}
+		})
+	}
+
+	function Todouble(int) {
+		return int / 10000
+	}
+</script>

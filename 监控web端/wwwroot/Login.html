@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<div id="LoginBaseDiv">
+		<label>用户名：</label> <input type="text" id="loginUserId" /><br />
+		<label>密  码：</label> <input type="password" id="LoginPwd" /><br />
+		<button id="loginBtn">登录</button>  <a href="reg.html">注册</a>  <a href="activation.html">激活</a>
+	</div>
+</body>
+</html>
+
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+	$("#loginBtn").click(function () {
+		$.ajax({
+			url: "api/Login/Login",
+			data: JSON.stringify({ account: $("#loginUserId").val(), password: $("#LoginPwd").val() }),
+			type: 'POST',
+			contentType: "application/json",
+			success: function (res) {
+				if (res.isSuccess) {
+					localStorage.setItem("Account", res.data.account)
+					localStorage.setItem("Token", res.data.token)
+					location.href = "index.html";
+				}
+				else {
+					alert(res.message);
+				}
+			}
+		})
+	})
+</script>
