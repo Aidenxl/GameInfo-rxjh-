@@ -18,12 +18,12 @@ namespace MonitorClient
         private static string Password { get; set; }
         static void Main(string[] args)
         {
-            Console.WriteLine("请输入账号");
-            Account = Console.ReadLine();
-            Console.WriteLine("请输入密码");
-            Account = Console.ReadLine();
-            HttpClient httpClient = new HttpClient();
-            textBox1.Text = httpClient.Get($@"{baseUrl}/api/Reg/GetRegCode?codeType={codeType}&time={time}").RawText;
+            //Console.WriteLine("请输入账号");
+            //Account = Console.ReadLine();
+            //Console.WriteLine("请输入密码");
+            //Account = Console.ReadLine();
+            //HttpClient httpClient = new HttpClient();
+            //textBox1.Text = httpClient.Get($@"{baseUrl}/api/Reg/GetRegCode?codeType={codeType}&time={time}").RawText;
             InitInfo();
             // redis = new RedisHelper();
         }

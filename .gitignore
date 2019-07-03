@@ -2,4 +2,24 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/.vs/江湖监控/v15/Server/sqlite3
+/.vs
+/AutoUpdate/obj
+/Client/obj
+/Models/obj
+/Services/obj
+/注册码计算/obj
+/江湖监控/obj
+/本地版/obj
+/UpdateService/obj
+/Test/obj
+/监控web端/obj
+/AutoUpdate/bin
+/Client/bin
+/Models/bin
+/Services/bin
+/注册码计算/bin
+/江湖监控/bin
+/本地版/bin
+/UpdateService/bin
+/Test/bin
+/监控web端/bin

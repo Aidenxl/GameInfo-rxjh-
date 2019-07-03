@@ -80,6 +80,7 @@
     <Compile Include="ApiReturnModel\ReturnBase.cs" />
     <Compile Include="ComputeRegistrationCode.cs" />
     <Compile Include="DataInfo.cs" />
+    <Compile Include="DBModel\AccountDevie.cs" />
     <Compile Include="DBModel\BaseModel.cs" />
     <Compile Include="DBModel\ClientBindMachnes.cs" />
     <Compile Include="DBModel\LoginInfo.cs" />

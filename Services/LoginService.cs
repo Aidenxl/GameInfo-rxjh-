@@ -48,13 +48,27 @@ namespace Services
 
         }
 
-        public ReturnBase<string> ClientLogin(string account, string pwd)
+        /// <summary>
+        /// 信息采集端登录
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public ReturnBase<string> ClientLogin(string account, string pwd, string deviceCode)
         {
             ReturnBase<string> result = new ReturnBase<string>();
             if (Login(account, pwd).IsSuccess)
             {
-                result.IsSuccess = true;
-                result.Message = "登录失败";
+                if (CheckAccountDevice(account, deviceCode))
+                {
+                    result.IsSuccess = true;
+                    result.Message = "成功";
+                }
+                else
+                {
+                    result.IsSuccess = false;
+                    result.Message = "登录失败,该设备未绑定";
+                }
             }
             else
             {
@@ -152,6 +166,24 @@ namespace Services
             rCode = rCode.QueryByCondition(condition, new List<SqlParameter>() { new SqlParameter("@UseAccountOrMachine", machineCode) });
             result.IsSuccess = rCode != null;
             return result;
+        }
+
+        /// <summary>
+        /// 检查账号和设备绑定列表中有没有当前数据
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="deviceCode"></param>
+        /// <returns></returns>
+        private bool CheckAccountDevice(string account, string deviceCode)
+        {
+            AccountDevie accountDevie = new AccountDevie();
+
+            string condition = "[Account]=@Account and [DeviceCode]=@DeviceCode";
+            List<SqlParameter> sqlParameter = new List<SqlParameter>() { new SqlParameter("@Account", account), new SqlParameter("@DeviceCode", deviceCode) };
+
+            var result = accountDevie.QueryByCondition(condition, sqlParameter);
+
+            return result != null;
         }
     }
 }

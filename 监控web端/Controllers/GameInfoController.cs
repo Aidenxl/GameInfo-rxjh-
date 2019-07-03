@@ -36,7 +36,7 @@ namespace 监控web端.Controllers
             if (result.Status == 1)
             {
                 var infoModelValues = GetInfoModelValues();
-                if (infoModelValues != null && infoModelValues.InfoModels.Count > 0)
+                if (infoModelValues != null && infoModelValues.InfoModels != null && infoModelValues.TotilGold != null && infoModelValues.InfoModels.Count > 0)
                 {
                     result.GameInfoModel = infoModelValues;
                 }
